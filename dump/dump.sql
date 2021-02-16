@@ -12,4 +12,11 @@ CREATE TABLE EMM_KullandikcaOde_Detay (
   SiparisNo int(20),
   ServisTipi text(20),
   KullanimByte text(30)
-)
+);
+
+INSERT INTO EMM_KullandikcaOde_Ozet 
+(Tarih, ToplamKayit, ToplamKullanimByte)
+VALUES 
+(20210221, 6, 50),
+(20210220, 2, 100)
+;
