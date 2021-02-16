@@ -8,6 +8,8 @@ services:
       MYSQL_DATABASE:      ${DB_NAME}
       MYSQL_USER:          ${DB_USER}
       MYSQL_PASSWORD:      ${DB_PASS}
+    volumes:
+    - ./dump:/docker-entrypoint-initdb.d
   adminer:
     image: adminer
     ports:
@@ -15,3 +17,4 @@ services:
     restart: always
     links:
       - db
+
