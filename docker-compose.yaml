@@ -10,11 +10,35 @@ services:
       MYSQL_PASSWORD:      ${DB_PASS}
     volumes:
     - ./dump:/docker-entrypoint-initdb.d
+    healthcheck:
+        test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=q2apass
+        interval: 2s
+        timeout: 60s
+        retries: 40
   adminer:
     image: adminer
     ports:
     - '8080:8080'
     restart: always
+    depends_on:
+      - db
     links:
       - db
+  web:
+    build: /Users/cansinaldanmaz/Downloads/workspace/github.com/turkcellcloud/ceph-python-client/
+    ports:
+    - '8000:8000'
+    restart: always
+    environment:
+    - WEB_CONCURRENCY=5
+    - DB_USER=q2a
+    - DB_PASS=q2apass
+    - DB_SERVER=db
+    - DB_NAME=q2a
+    - USER_INFO={"aslan":{"password":"Aslan12345","role":"admin"},"emm":{"password":"Emm@202!","role":"emmUser"}}
+    links:
+      - db
+    depends_on:
+      db:
+         condition: service_healthy
 

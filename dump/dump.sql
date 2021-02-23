@@ -1,5 +1,7 @@
+ALTER USER 'q2a' IDENTIFIED WITH mysql_native_password BY 'q2apass';
+
 CREATE TABLE EMM_KullandikcaOde_Ozet (
-  Tarih int(11),
+  Tarih int(11) PRIMARY KEY,
   ToplamKayit int(11),
   ToplamKullanimByte int(11)
 );
