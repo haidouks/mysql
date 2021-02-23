@@ -11,10 +11,11 @@ services:
     volumes:
     - ./dump:/docker-entrypoint-initdb.d
     healthcheck:
-        test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=q2apass
+        test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$MYSQL_PASSWORD
         interval: 2s
         timeout: 60s
         retries: 40
+    command: mysqld --default-authentication-plugin=mysql_native_password --skip-mysqlx
   adminer:
     image: adminer
     ports:
@@ -31,10 +32,10 @@ services:
     restart: always
     environment:
     - WEB_CONCURRENCY=5
-    - DB_USER=q2a
-    - DB_PASS=q2apass
+    - DB_USER=ceph
+    - DB_PASS=cephPass
     - DB_SERVER=db
-    - DB_NAME=q2a
+    - DB_NAME=tbos
     - USER_INFO={"aslan":{"password":"Aslan12345","role":"admin"},"emm":{"password":"Emm@202!","role":"emmUser"}}
     links:
       - db
