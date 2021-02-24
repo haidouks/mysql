@@ -1,9 +1,4 @@
 ALTER USER 'ceph' IDENTIFIED WITH mysql_native_password BY 'cephPass';
-CREATE TABLE EMM_KullandikcaOde_Ozet (
-  Tarih INT(8) NOT NULL PRIMARY KEY,
-  ToplamKayit INT NOT NULL,
-  ToplamKullanimByte INT NOT NULL
-);
 CREATE TABLE EMM_KullandikcaOde_Detay (
   ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   Tarih INT(8) NOT NULL,
@@ -13,11 +8,15 @@ CREATE TABLE EMM_KullandikcaOde_Detay (
   MusteriNo TEXT NOT NULL,
   Erisimtipi TEXT NOT NULL
 );
-INSERT INTO
-  EMM_KullandikcaOde_Ozet (Tarih, ToplamKayit, ToplamKullanimByte)
-VALUES
-  (20210221, 6, 50),
-  (20210220, 2, 100);
+CREATE VIEW EMM_KullandikcaOde_Ozet (Tarih, ToplamKayit, ToplamKullanimByte) AS
+SELECT
+  Tarih,
+  COUNT(Tarih),
+  SUM(KullanimByte)
+FROM
+  EMM_KullandikcaOde_Detay
+GROUP BY
+  Tarih;
 INSERT INTO
   EMM_KullandikcaOde_Detay (
     Tarih,
