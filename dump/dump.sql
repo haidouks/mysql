@@ -1,12 +1,13 @@
 ALTER USER 'ceph' IDENTIFIED WITH mysql_native_password BY 'cephPass';
 CREATE TABLE EMM_KullandikcaOde_Detay (
-  ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  ID INT PRIMARY KEY AUTO_INCREMENT,
   Tarih INT(8) NOT NULL,
   KullanimByte INT NOT NULL,
   ServisTipi TEXT NOT NULL,
   SiparisNo TEXT NOT NULL,
   MusteriNo TEXT NOT NULL,
-  Erisimtipi TEXT NOT NULL
+  Erisimtipi TEXT NOT NULL,
+  Lokasyon TEXT NOT NULL
 );
 CREATE VIEW EMM_KullandikcaOde_Ozet (Tarih, ToplamKayit, ToplamKullanimByte) AS
 SELECT
@@ -24,7 +25,8 @@ INSERT INTO
     ServisTipi,
     SiparisNo,
     MusteriNo,
-    Erisimtipi
+    Erisimtipi,
+    Lokasyon
   )
 VALUES
   (
@@ -33,23 +35,26 @@ VALUES
     "READ",
     "xyz12354617",
     "mus0002",
-    "LOCAL"
+    "LOCAL",
+    "IST"
   ),
   (
     20210224,
     10240,
-    "CAPACITY",
+    "CAP",
     "xyz12354617",
     "mus0001",
-    "LOCAL"
+    "LOCAL",
+    "ANK"
   ),
   (
     20210224,
     1024,
-    "CAPACITY",
+    "CAP",
     "xyz12354617",
     "mus0003",
-    "INTERNET"
+    "INTERNET",
+    "IST"
   ),
   (
     20210223,
@@ -57,7 +62,8 @@ VALUES
     "READ",
     "xyz12354617",
     "mus0001",
-    "INTERNET"
+    "INTERNET",
+    "ANK"
   ),
   (
     20210223,
@@ -65,7 +71,8 @@ VALUES
     "CAPACITY",
     "xyz12351237",
     "mus0002",
-    "LOCAL"
+    "LOCAL",
+    "IST"
   ),
   (
     20210222,
@@ -73,7 +80,8 @@ VALUES
     "READ",
     "xyz12354617",
     "mus0001",
-    "LOCAL"
+    "LOCAL",
+    "ANK"
   ),
   (
     20210221,
@@ -81,5 +89,6 @@ VALUES
     "CAPACITY",
     "xyz1237",
     "mus0004",
-    "INTERNET"
+    "INTERNET",
+    "IST"
   );
