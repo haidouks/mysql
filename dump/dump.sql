@@ -68,7 +68,7 @@ VALUES
   (
     20210223,
     1024,
-    "CAPACITY",
+    "CAP",
     "xyz12351237",
     "mus0002",
     "LOCAL",
@@ -86,7 +86,7 @@ VALUES
   (
     20210221,
     1024,
-    "CAPACITY",
+    "CAP",
     "xyz1237",
     "mus0004",
     "INTERNET",
